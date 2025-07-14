@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    // 以项目根目录为基础
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+      // 将 @ 映射到 src 目录
+    },
+    // 推荐启用的其他选项（可选）
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "target": "ESNext",
+    "module": "ESNext"
+  },
+  "include": [
+    "src"
+  ]
+}
