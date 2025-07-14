@@ -36,4 +36,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist   # Vite 的输出目录
-          publish_branch: page     # 关键：改成你要的分支
+          publish_branch: gh-pages     # 关键：改成你要的分支
