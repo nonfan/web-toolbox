@@ -5,12 +5,12 @@ import {BIP32Factory} from "bip32";
 import {Wallet} from "ethers";
 import {Buffer} from "buffer";
 import {
-  AlertTriangle,
+  AlertTriangle, BadgeCheck,
   CheckCircle,
   Copy,
   Download,
   Eye,
-  EyeOff,
+  EyeOff, Github,
   KeyRound,
   LockKeyhole,
   QrCode,
@@ -288,8 +288,20 @@ const SecureMnemonicWallet: React.FC = () => {
           )}
         </div>
       </div>
-      <div className="mt-8 text-xs text-gray-400 text-center">
-        仅用于本地浏览器安全演示，不上传任何数据。请妥善保管助记词与私钥！
+      <div className="mt-8 flex flex-col items-center gap-1 text-xs text-gray-400 text-center">
+        <div>
+          仅用于本地浏览器安全演示，不上传任何数据。请妥善保管助记词与私钥！
+        </div>
+        <a
+          href="https://github.com/nonfan/web-toolbox"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 mt-2 text-blue-500 hover:underline"
+        >
+          <Github className="w-4 h-4" />
+          MIT 开源 · GitHub
+          <BadgeCheck className="w-3 h-3 ml-1 text-green-500" />
+        </a>
       </div>
     </div>
   );
