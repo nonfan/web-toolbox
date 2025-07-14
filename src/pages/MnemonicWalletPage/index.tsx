@@ -295,5 +295,4 @@ const SecureMnemonicWallet: React.FC = () => {
   );
 };
 
-// 外层统一 notification contextHolder
 export default SecureMnemonicWallet

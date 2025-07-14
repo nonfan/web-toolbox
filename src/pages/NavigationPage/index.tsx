@@ -26,7 +26,7 @@ function NavigationPage() {
 
   return (
     <div className="bg-white dark:bg-[#1b1b1d] min-h-screen px-5 py-10">
-      <div className="pb-5 flex items-center">
+      <div className="pb-4 flex items-center">
         <SearchBar
           placeholder="搜索关键词..."
           value={search}

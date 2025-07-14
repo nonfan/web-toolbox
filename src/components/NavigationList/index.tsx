@@ -86,7 +86,7 @@ const NavigationItemCard: React.FC<{ item: NavigationItem }> = ({item}) => {
 const NavigationList: React.FC<Props> = ({dataSource, title, smallTitle, icon}) => {
   return (
     <>
-      <div className="mb-8 flex items-center gap-4">
+      <div className="mb-5 ml-2 flex items-center gap-4">
         <div
           className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-tr from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-700">
           <RenderIcon icon={icon}/>
