@@ -4,12 +4,15 @@ import './index.css'
 import Layout from './layout'
 import {HashRouter} from "react-router-dom";
 import { Buffer } from "buffer";
-(window as any).Buffer = Buffer;
+import { ThemeProvider } from './contexts/ThemeContext';
+(window as Window & { Buffer?: typeof Buffer }).Buffer = Buffer;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HashRouter>
-      <Layout/>
-    </HashRouter>
+    <ThemeProvider>
+      <HashRouter>
+        <Layout/>
+      </HashRouter>
+    </ThemeProvider>
   </StrictMode>,
 )

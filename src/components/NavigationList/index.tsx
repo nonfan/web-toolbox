@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {useNavigate} from "react-router-dom";
 import {ArrowRight, ExternalLink} from "lucide-react";
 
@@ -25,9 +25,10 @@ const RenderIcon: React.FC<{ icon: string | React.FC }> = ({icon}) => {
 };
 
 // 子组件：单个导航项
-const NavigationItemCard: React.FC<{ item: NavigationItem }> = ({item}) => {
+const NavigationItemCard: React.FC<{ item: NavigationItem }> = React.memo(({item}) => {
   const { icon, title, smallTitle, url, highlight } = item;
   const navigate = useNavigate();
+  const isExternal = useMemo(() => /^https?:\/\//i.test(item.url), [item.url]);
 
   const handleGo = () => {
     if (isExternal) {
@@ -35,33 +36,33 @@ const NavigationItemCard: React.FC<{ item: NavigationItem }> = ({item}) => {
     } else {
       navigate(url);
     }
-  }
-
-  const isExternal = /^https?:\/\//i.test(item.url);
+  };
 
   return (
     <div
-      className={
-        "w-full sm:w-[calc(50%-16px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-16px)] m-[8px] transition-transform rounded-2xl cursor-pointer" +
-        (highlight
-          ? " border-2 border-blue-500 shadow-lg shadow-blue-200/30 scale-105 bg-blue-50 dark:bg-blue-950"
-          : " border border-[#ececec] dark:border-[#282828] bg-white dark:bg-[#2c2e2f]")
-      } onClick={handleGo}>
-
-      <div
-        className="flex items-center p-4 h-[120px] border rounded-2xl bg-white text-black dark:text-white dark:bg-[#2c2e2f] border-[#ececec] dark:border-[#282828] shadow-sm hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300">
-        <div
-          className="overflow-hidden w-[56px] h-[56px] flex justify-center items-center rounded-full mr-4 bg-gradient-to-tr from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 transition-all duration-500">
+      className={`
+        w-full sm:w-[calc(50%-16px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-16px)] 
+        m-2 transition-all duration-300 cursor-pointer rounded-2xl
+        ${
+          highlight
+            ? "border-2 border-blue-500 shadow-lg shadow-blue-200/30 scale-105 bg-blue-50 dark:bg-blue-950"
+            : "border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 hover:shadow-md hover:border-blue-300 dark:hover:border-blue-500"
+        }
+      `}
+      onClick={handleGo}
+    >
+      <div className="flex items-center p-4 h-[120px]">
+        <div className="overflow-hidden w-14 h-14 flex justify-center items-center rounded-full mr-4 bg-gradient-to-tr from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 transition-all duration-500">
           <div className="transform hover:rotate-[360deg] transition-all duration-700">
             <RenderIcon icon={icon}/>
           </div>
         </div>
         <div className="flex-1 min-w-0 flex flex-col justify-center">
-          <div className="font-semibold text-base truncate dark:text-white mb-1">{title}</div>
-          <div className="text-xs text-[#a0a1a1] dark:text-gray-400 leading-snug tracking-wide line-clamp-2">
+          <div className="font-semibold text-base truncate text-gray-900 dark:text-white mb-1">{title}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400 leading-snug tracking-wide line-clamp-2 mb-2">
             {smallTitle}
           </div>
-          <div className="flex items-center mt-2 gap-1 text-xs font-medium">
+          <div className="flex items-center gap-1 text-xs font-medium">
             {isExternal ? (
               <>
                 <ExternalLink className="w-4 h-4 text-blue-500"/>
@@ -77,10 +78,9 @@ const NavigationItemCard: React.FC<{ item: NavigationItem }> = ({item}) => {
         </div>
       </div>
     </div>
-
-
   );
-};
+});
+NavigationItemCard.displayName = 'NavigationItemCard';
 
 // 父组件
 const NavigationList: React.FC<Props> = ({dataSource, title, smallTitle, icon}) => {
