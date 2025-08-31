@@ -51,7 +51,7 @@ const NavigationItemCard: React.FC<{ item: NavigationItem }> = ({item}) => {
       <div
         className="flex items-center p-4 h-[120px] border rounded-2xl bg-white text-black dark:text-white dark:bg-[#2c2e2f] border-[#ececec] dark:border-[#282828] shadow-sm hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300">
         <div
-          className="w-[56px] h-[56px] flex justify-center items-center rounded-full mr-4 bg-gradient-to-tr from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 transition-all duration-500">
+          className="overflow-hidden w-[56px] h-[56px] flex justify-center items-center rounded-full mr-4 bg-gradient-to-tr from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 transition-all duration-500">
           <div className="transform hover:rotate-[360deg] transition-all duration-700">
             <RenderIcon icon={icon}/>
           </div>
