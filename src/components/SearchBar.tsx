@@ -36,7 +36,7 @@ export default function SearchBar({ value, onChange, ...props }: SearchBarProps 
             color: 'var(--text-primary)'
           }}
           type="text"
-          placeholder={props.placeholder || "搜索关键词..."}
+          placeholder={props.placeholder || "搜索工具名称、标签或描述..."}
           value={value}
           onChange={onChange}
           {...props}

@@ -1,0 +1,34 @@
+{
+  "navigationItems": [
+    {
+      "id": "mnemonic-wallet",
+      "title": "生成助记词",
+      "smallTitle": "基于密码生成助记词和 Keystore 文件",
+      "iconName": "KeySvg",
+      "url": "/mnemonic-wallet",
+      "type": "internal",
+      "category": "blockchain",
+      "tags": ["助记词", "钱包", "加密", "keystore"],
+      "description": "安全地生成BIP39助记词并创建加密的Keystore文件，用于以太坊钱包管理"
+    },
+    {
+      "id": "ethereum-blockies",
+      "title": "Ethereum Blockies Base64",
+      "smallTitle": "一个用于生成块状 identicons 作为 base64 编码 PNG 的小型库。",
+      "iconName": "EthereumAvatarSvg",
+      "url": "https://www.npmjs.com/package/ethereum-blockies-base64",
+      "type": "external",
+      "category": "blockchain",
+      "tags": ["以太坊", "头像", "identicon", "base64"],
+      "description": "基于以太坊地址生成独特的块状头像图标，支持base64编码输出"
+    }
+  ],
+  "categories": [
+    {
+      "id": "blockchain",
+      "title": "区块链功能",
+      "smallTitle": "区块链常用工具和功能快速入口",
+      "iconName": "Blocks"
+    }
+  ]
+}

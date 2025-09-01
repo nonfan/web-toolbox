@@ -1,27 +1,34 @@
 import React, {useMemo, useState} from 'react';
 import NavigationList, {NavigationItem} from "@/components/NavigationList";
-import KeySvg from "@/assets/KeySvg";
 import {Blocks} from "lucide-react";
 import SearchBar from "@/components/SearchBar";
-import EthereumAvatarSvg from "@/assets/EthereumAvatarSvg";
+import { getNavigationItems, getCategory, searchItems } from "@/utils/navigationData";
 
-const items: NavigationItem[] = [
-  {title: "生成助记词", smallTitle: "基于密码生成助记词和 Keystore 文件", icon: KeySvg, url: "/mnemonic-wallet"},
-  {title: "Ethereum Blockies Base64", smallTitle: "一个用于生成块状 identicons 作为 base64 编码 PNG 的小型库。", icon: EthereumAvatarSvg, url: "https://www.npmjs.com/package/ethereum-blockies-base64"},
-  // 更多项...
-];
+// 从JSON文件加载导航项数据
+const allItems = getNavigationItems();
+const categoryInfo = getCategory('blockchain');
 
 function NavigationPage() {
   const [search, setSearch] = useState("");
 
   const highlightList = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return items.map(item => ({
+    
+    // 如果有搜索关键词，使用综合搜索
+    let filteredItems: NavigationItem[];
+    if (q) {
+      filteredItems = searchItems(q);
+    } else {
+      filteredItems = allItems;
+    }
+    
+    // 添加高亮标记
+    return filteredItems.map(item => ({
       ...item,
-      highlight:
-        !!q &&
-        (item.title.toLowerCase().includes(q) ||
-          item.smallTitle.toLowerCase().includes(q))
+      highlight: !!q && (
+        item.title.toLowerCase().includes(q) ||
+        item.smallTitle.toLowerCase().includes(q)
+      )
     }));
   }, [search]);
 
@@ -47,7 +54,7 @@ function NavigationPage() {
       <div className="relative z-10">
         <div className="pb-8 flex items-center justify-center">
           <SearchBar
-            placeholder="搜索功能和工具..."
+            placeholder="搜索工具名称、标签或描述..."
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -55,8 +62,8 @@ function NavigationPage() {
         
         <div className="max-w-7xl mx-auto">
           <NavigationList
-            title="区块链功能"
-            smallTitle="区块链常用工具和功能快速入口"
+            title={categoryInfo?.title || "区块链功能"}
+            smallTitle={categoryInfo?.smallTitle || "区块链常用工具和功能快速入口"}
             icon={Blocks}
             dataSource={highlightList}
           />
