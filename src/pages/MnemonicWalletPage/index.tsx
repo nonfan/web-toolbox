@@ -182,7 +182,6 @@ const SecureMnemonicWallet: React.FC = () => {
         style={{
           fontFamily: "Fira Mono, monospace",
           letterSpacing: ".01em",
-          background: "white",
         }}
       >
         {value}
