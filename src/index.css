@@ -1,10 +1,56 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* 主题切换动画 */
+/* 主题切换动画 - 更流畅的过渡 */
 * {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
+  transition-property: background-color, border-color, fill, stroke, color, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-duration: 300ms;
+}
+
+/* 针对动画元素的优化 */
+.group {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* 导航类型标签样式增强 */
+@keyframes badge-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes badge-glow {
+  0% { box-shadow: 0 0 5px var(--success-color); }
+  50% { box-shadow: 0 0 20px var(--success-color), 0 0 30px var(--success-color); }
+  100% { box-shadow: 0 0 5px var(--success-color); }
+}
+
+@keyframes external-glow {
+  0% { box-shadow: 0 0 5px var(--external-color); }
+  50% { box-shadow: 0 0 20px var(--external-color), 0 0 30px var(--external-color); }
+  100% { box-shadow: 0 0 5px var(--external-color); }
+}
+
+.nav-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.group:hover .nav-badge::before {
+  left: 100%;
 }
 
 /* 防止页面加载时的闪烁 */
@@ -15,3 +61,92 @@ html {
 html.dark {
   color-scheme: dark;
 }
+
+/* 舒适的护眼主题色彩 */
+:root {
+  /* 亮色主题 - 温和护眼色彩 */
+  --bg-primary: #fafafa;          /* 温和的暖白背景 */
+  --bg-secondary: #ffffff;        /* 卡片背景 */
+  --bg-tertiary: #f7fafc;         /* 次要背景 */
+  --text-primary: #2d3748;        /* 深灰主文字 */
+  --text-secondary: #4a5568;      /* 中灰次要文字 */
+  --text-tertiary: #718096;       /* 浅灰辅助文字 */
+  --border-color: #e2e8f0;        /* 边框颜色 */
+  --shadow-color: rgba(0, 0, 0, 0.08); /* 增强阴影颜色 */
+  --accent-color: #3182ce;        /* 主色调 */
+  --accent-color-opacity-10: rgba(49, 130, 206, 0.12);
+  --bg-glass-light: rgba(255, 255, 255, 0.6);
+  --success-color: #38a169;       /* 成功色 - 绿色 */
+  --success-bg: rgba(56, 161, 105, 0.1);
+  --external-color: #e53e3e;      /* 外部链接色 - 红色 */
+  --external-bg: rgba(229, 62, 62, 0.1);
+}
+
+html.dark {
+  /* 暗色主题 - 深蓝灰护眼色彩 */
+  --bg-primary: #1a202c;          /* 深蓝灰背景 */
+  --bg-secondary: #2d3748;        /* 卡片背景 */
+  --bg-tertiary: #1a202c;         /* 次要背景 */
+  --text-primary: #f7fafc;        /* 暖白主文字 */
+  --text-secondary: #cbd5e0;      /* 淡灰次要文字 */
+  --text-tertiary: #a0aec0;       /* 中灰辅助文字 */
+  --border-color: #4a5568;        /* 边框颜色 */
+  --shadow-color: rgba(0, 0, 0, 0.4); /* 增强暗色阴影 */
+  --accent-color: #63b3ed;        /* 主色调 */
+  --accent-color-opacity-10: rgba(99, 179, 237, 0.15);
+  --bg-glass-dark: rgba(45, 55, 72, 0.6);
+  --success-color: #68d391;       /* 成功色 - 亮绿色 */
+  --success-bg: rgba(104, 211, 145, 0.15);
+  --external-color: #fc8181;      /* 外部链接色 - 亮红色 */
+  --external-bg: rgba(252, 129, 129, 0.15);
+}
+
+/* 全局样式应用 */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 提升文字渲染质量 */
+* {
+  font-feature-settings: inherit;
+}
+
+/* 滚动条样式优化 - 更精致的设计 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--text-tertiary), var(--accent-color));
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--text-secondary), var(--accent-color));
+  transform: scale(1.1);
+}
+
+/* 选择文字颜色优化 */
+::selection {
+  background-color: var(--accent-color-opacity-10);
+  color: var(--accent-color);
+}
+
+::-moz-selection {
+  background-color: var(--accent-color-opacity-10);
+  color: var(--accent-color);
+}
+
+
