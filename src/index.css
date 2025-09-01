@@ -65,9 +65,9 @@ html.dark {
 /* 舒适的护眼主题色彩 */
 :root {
   /* 亮色主题 - 温和护眼色彩 */
-  --bg-primary: #fafafa;          /* 温和的暖白背景 */
+  --bg-primary: #eeeeee;          /* 更柔和的暖灰背景 */
   --bg-secondary: #ffffff;        /* 卡片背景 */
-  --bg-tertiary: #f7fafc;         /* 次要背景 */
+  --bg-tertiary: #f0f4f7;         /* 次要背景 */
   --text-primary: #2d3748;        /* 深灰主文字 */
   --text-secondary: #4a5568;      /* 中灰次要文字 */
   --text-tertiary: #718096;       /* 浅灰辅助文字 */

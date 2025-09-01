@@ -145,7 +145,7 @@ const NavigationList: React.FC<Props> = ({dataSource, title, smallTitle, icon}) 
               boxShadow: '0 8px 32px -4px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.3)'
             }}
           >
-            <div className="text-white text-2xl transition-all duration-500 group-hover:scale-110 drop-shadow-lg">
+            <div className="text-black dark:text-white k text-2xl transition-all duration-500 group-hover:scale-110 drop-shadow-lg">
               <RenderIcon icon={icon}/>
             </div>
             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.3), transparent)' }} />

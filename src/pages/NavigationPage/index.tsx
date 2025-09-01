@@ -45,8 +45,6 @@ function NavigationPage() {
         />
       </div>
       
-      <ThemeToggle />
-      
       <div className="relative z-10">
         <div className="pb-8 flex items-center justify-center">
           <SearchBar
