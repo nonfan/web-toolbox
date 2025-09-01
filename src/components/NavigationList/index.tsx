@@ -39,7 +39,7 @@ const NavigationItemCard: React.FC<{ item: NavigationItem }> = React.memo(({item
   };
 
   const cardClasses = useMemo(() => {
-    const base = "group relative w-full sm:w-[calc(50%-16px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-16px)] m-2 transition-all duration-500 ease-out cursor-pointer rounded-2xl backdrop-blur-sm overflow-hidden select-none";
+    const base = "group relative w-full sm:w-[calc(50%-16px)] md:w-[calc(50%-16px)] lg:w-[calc(33.33%-16px)] xl:w-[calc(25%-16px)] m-2 transition-all duration-500 ease-out cursor-pointer rounded-2xl backdrop-blur-sm overflow-hidden select-none";
     const highlight = item.highlight
       ? "border-2 border-[var(--accent-color)] scale-[1.02] shadow-2xl transform-gpu"
       : "border border-[var(--border-color)] hover:-translate-y-3 hover:scale-[1.02] shadow-sm hover:shadow-2xl transform-gpu hover:z-10";

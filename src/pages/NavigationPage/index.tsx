@@ -60,7 +60,7 @@ function NavigationPage() {
           />
         </div>
         
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-8xl mx-auto">
           <NavigationList
             title={categoryInfo?.title || "区块链功能"}
             smallTitle={categoryInfo?.smallTitle || "区块链常用工具和功能快速入口"}
