@@ -3,7 +3,6 @@ import NavigationList, {NavigationItem} from "@/components/NavigationList";
 import KeySvg from "@/assets/KeySvg";
 import {Blocks} from "lucide-react";
 import SearchBar from "@/components/SearchBar";
-import ThemeToggle from "@/components/ThemeToggle";
 import EthereumAvatarSvg from "@/assets/EthereumAvatarSvg";
 
 const items: NavigationItem[] = [
