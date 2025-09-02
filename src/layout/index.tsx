@@ -29,7 +29,7 @@ function Layout() {
 
   return (
     <div className="relative min-h-screen">
-      {/* 固定定位的UI元素 */}
+       {/*固定定位的UI元素*/}
       <div className="fixed inset-0 pointer-events-none z-50">
         {/* 左上角：BackButton */}
         <div className="absolute top-6 left-6 pointer-events-auto">
@@ -37,19 +37,21 @@ function Layout() {
         </div>
 
         {/* 右上角：ThemeToggle */}
-        <div className="absolute top-6 right-6 pointer-events-auto">
+        <div className="hidden sm:flex absolute top-6 right-6 pointer-events-auto">
           <ThemeToggle/>
         </div>
 
         {/* 顶部居中：SearchBar (仅首页显示) */}
         {isHomePage && (
-          <div className="absolute top-6 left-1/2 transform -translate-x-1/2 pointer-events-auto">
-            <div className="w-80 sm:w-96">
-              <SearchBar
-                placeholder="搜索工具名称、标签或描述..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-              />
+          <div className="flex gap-2 absolute top-6 left-1/2 transform -translate-x-1/2 pointer-events-auto w-full max-w-md px-4">
+            <SearchBar
+              placeholder="搜索工具名称、标签或描述..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="w-full"
+            />
+            <div className="flex sm:hidden">
+              <ThemeToggle/>
             </div>
           </div>
         )}

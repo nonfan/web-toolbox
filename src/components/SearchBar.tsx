@@ -33,7 +33,8 @@ export default function SearchBar({ value, onChange, ...props }: SearchBarProps 
         <input
           className="flex-1 bg-transparent outline-none border-none px-3 text-base"
           style={{
-            color: 'var(--text-primary)'
+            color: 'var(--text-primary)',
+            outline: "none"
           }}
           type="text"
           placeholder={props.placeholder || "搜索工具名称、标签或描述..."}

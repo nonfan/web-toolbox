@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')!).render(
     <ThemeProvider>
       <SearchProvider>
         <HashRouter>
-          <Layout/>
+            <Layout/>
         </HashRouter>
       </SearchProvider>
     </ThemeProvider>
