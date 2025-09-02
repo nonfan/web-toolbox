@@ -23,6 +23,11 @@ export const getNavigationItems = (): (NavigationItem & { tags: string[], descri
   }));
 };
 
+// 获取所有分类信息
+export const getAllCategories = () => {
+  return navigationData.categories;
+};
+
 // 获取分类信息
 export const getCategory = (categoryId: string) => {
   return navigationData.categories.find(cat => cat.id === categoryId);
