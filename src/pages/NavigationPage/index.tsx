@@ -1,40 +1,42 @@
 import React, {useMemo, useState} from 'react';
 import NavigationList, {NavigationItem} from "@/components/NavigationList";
 import {Blocks} from "lucide-react";
-import SearchBar from "@/components/SearchBar";
-import { getNavigationItems, getCategory, searchItems } from "@/utils/navigationData";
+import { getNavigationItems, getCategory } from "@/utils/navigationData";
+import { useSearch } from "@/contexts/SearchContext";
 
 // 从JSON文件加载导航项数据
 const allItems = getNavigationItems();
 const categoryInfo = getCategory('blockchain');
 
 function NavigationPage() {
-  const [search, setSearch] = useState("");
-
+  const { search, searchResults } = useSearch();
+  
   const highlightList = useMemo(() => {
     const q = search.trim().toLowerCase();
     
-    // 如果有搜索关键词，使用综合搜索
+    // 如果有搜索关键词，使用来自Layout的搜索结果或本地搜索
     let filteredItems: NavigationItem[];
     if (q) {
-      filteredItems = searchItems(q);
+      filteredItems = searchResults || allItems;
     } else {
       filteredItems = allItems;
     }
     
     // 添加高亮标记
-    return filteredItems.map(item => ({
+    const result = filteredItems.map(item => ({
       ...item,
       highlight: !!q && (
         item.title.toLowerCase().includes(q) ||
         item.smallTitle.toLowerCase().includes(q)
       )
     }));
-  }, [search]);
+    
+    return result;
+  }, [search, searchResults]);
 
   return (
     <div 
-      className="min-h-screen px-6 py-12 relative overflow-hidden"
+      className="min-h-screen pt-30 px-6 py-12 relative overflow-hidden"
       style={{
         backgroundColor: 'var(--bg-primary)',
         color: 'var(--text-primary)'
@@ -52,14 +54,6 @@ function NavigationPage() {
       </div>
       
       <div className="relative z-10">
-        <div className="pb-8 flex items-center justify-center">
-          <SearchBar
-            placeholder="搜索工具名称、标签或描述..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-        </div>
-        
         <div className="max-w-8xl mx-auto">
           <NavigationList
             title={categoryInfo?.title || "区块链功能"}

@@ -12,7 +12,7 @@ const BackButton: React.FC<BackButtonProps> = ({ className = '', style = {} }) =
   const location = useLocation();
   
   // 主页面路径列表 - 在这些页面隐藏返回按钮
-  const hideOnPaths = ['/', '/navigation'];
+  const hideOnPaths = ['/'];
   
   // 如果当前路径在隐藏列表中，不渲染按钮
   if (hideOnPaths.includes(location.pathname)) {
@@ -23,9 +23,8 @@ const BackButton: React.FC<BackButtonProps> = ({ className = '', style = {} }) =
     <button
       onClick={() => navigate(-1)}
       className={`
-        fixed top-6 left-6 z-50
         flex items-center justify-center
-        w-14 h-14 rounded-2xl
+        w-13 h-13 rounded-2xl
         transition-all duration-500 ease-out
         hover:scale-110 active:scale-95
         backdrop-blur-sm

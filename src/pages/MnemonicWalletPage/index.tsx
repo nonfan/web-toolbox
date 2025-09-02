@@ -17,7 +17,6 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import {Modal, notification, Tooltip} from "antd";
-import BackButton from "@/components/BackButton";
 
 const bip32 = BIP32Factory(ecc);
 
@@ -192,7 +191,6 @@ const SecureMnemonicWallet: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#fafbfc] dark:bg-[#151617] flex flex-col items-center justify-center px-4 py-10">
-      <BackButton />
       {/* Google风格Logo和标题 */}
       <div className="mb-10 flex flex-col items-center">
         <LockKeyhole className="w-12 h-12 mb-3 text-blue-500 dark:text-blue-400"/>

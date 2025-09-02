@@ -9,9 +9,8 @@ const ThemeToggle: React.FC = () => {
     <button
       onClick={toggleTheme}
       className="
-        fixed top-6 right-6 z-50
         flex items-center justify-center
-        w-14 h-14 rounded-2xl
+        w-13 h-13 rounded-2xl
         transition-all duration-500 ease-out
         hover:scale-110 active:scale-95
         backdrop-blur-sm

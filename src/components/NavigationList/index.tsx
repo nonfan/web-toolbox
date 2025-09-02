@@ -157,14 +157,6 @@ const NavigationList: React.FC<Props> = ({dataSource, title, smallTitle, icon}) 
             <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] transition-colors duration-300">
               {title}
             </h1>
-            <div className="flex items-center gap-2">
-              <div className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-color-opacity-10)', color: 'var(--accent-color)', border: '1px solid var(--accent-color)' }}>
-                工具集
-              </div>
-              <div className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-color-opacity-10)', color: 'var(--accent-color)', border: '1px solid var(--accent-color)' }}>
-                共 {dataSource.length} 个工具
-              </div>
-            </div>
           </div>
           <p className="text-base mt-1 text-[var(--text-secondary)] transition-colors duration-300 leading-relaxed">
             {smallTitle}
@@ -175,9 +167,17 @@ const NavigationList: React.FC<Props> = ({dataSource, title, smallTitle, icon}) 
               style={underlineStyle}
             />
           </div>
+          <div className="flex items-center gap-2">
+            <div className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-color-opacity-10)', color: 'var(--accent-color)', border: '1px solid var(--accent-color)' }}>
+              工具集
+            </div>
+            <div className="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'var(--accent-color-opacity-10)', color: 'var(--accent-color)', border: '1px solid var(--accent-color)' }}>
+              共 {dataSource.length} 个工具
+            </div>
+          </div>
         </div>
       </header>
-      <div className="flex flex-wrap -m-2">
+      <div className="flex flex-wrap">
         {dataSource.map((item) => (
           <NavigationItemCard key={item.title} item={item}/>
         ))}
