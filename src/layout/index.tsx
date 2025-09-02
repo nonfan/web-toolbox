@@ -1,28 +1,28 @@
-import React, { useMemo, useEffect } from "react";
-import { useRoutes, useLocation } from "react-router-dom";
+import React, {useEffect} from "react";
+import {useLocation, useRoutes} from "react-router-dom";
 import routes from "@/routes";
 import ThemeToggle from "@/components/ThemeToggle";
 import BackButton from "@/components/BackButton";
 import SearchBar from "@/components/SearchBar";
-import { searchItems } from "@/utils/navigationData";
-import { useSearch } from "@/contexts/SearchContext";
+import {searchItems} from "@/utils/navigationData";
+import {useSearch} from "@/contexts/SearchContext";
 
 function Layout() {
   const element = useRoutes(routes);
   const location = useLocation();
-  const { search, setSearch, setSearchResults } = useSearch();
-  
+  const {search, setSearch, setSearchResults} = useSearch();
+
   // 定义首页路径列表
   const homePages = ['/'];
   const isHomePage = homePages.includes(location.pathname);
-  
+
   // 更新搜索结果
   useEffect(() => {
     if (!isHomePage) {
       setSearchResults(null);
       return;
     }
-    
+
     const results = search.trim() ? searchItems(search) : null;
     setSearchResults(results);
   }, [search, isHomePage, setSearchResults]);
@@ -33,14 +33,14 @@ function Layout() {
       <div className="fixed inset-0 pointer-events-none z-50">
         {/* 左上角：BackButton */}
         <div className="absolute top-6 left-6 pointer-events-auto">
-          <BackButton />
+          <BackButton/>
         </div>
-        
+
         {/* 右上角：ThemeToggle */}
         <div className="absolute top-6 right-6 pointer-events-auto">
-          <ThemeToggle />
+          <ThemeToggle/>
         </div>
-        
+
         {/* 顶部居中：SearchBar (仅首页显示) */}
         {isHomePage && (
           <div className="absolute top-6 left-1/2 transform -translate-x-1/2 pointer-events-auto">

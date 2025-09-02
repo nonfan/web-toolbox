@@ -1,20 +1,20 @@
-import React, {useMemo, useState} from 'react';
-import NavigationList, {NavigationItem} from "@/components/NavigationList";
+import React, {useMemo} from 'react';
+import NavigationList from "@/components/NavigationList";
 import {Blocks} from "lucide-react";
-import { getNavigationItems, getAllCategories, getItemsByCategory } from "@/utils/navigationData";
-import { useSearch } from "@/contexts/SearchContext";
+import {getAllCategories, getItemsByCategory, getNavigationItems} from "@/utils/navigationData";
+import {useSearch} from "@/contexts/SearchContext";
 
 // 从JSON文件加载导航项数据
 const allItems = getNavigationItems();
 const allCategories = getAllCategories();
 
 function NavigationPage() {
-  const { search, searchResults } = useSearch();
-  
+  const {search, searchResults} = useSearch();
+
   // 按类别分组的数据
   const categoryGroups = useMemo(() => {
     const q = search.trim().toLowerCase();
-    
+
     if (q) {
       // 如果有搜索，只显示一个搜索结果组
       const filteredItems = searchResults || allItems;
@@ -25,9 +25,9 @@ function NavigationPage() {
           item.smallTitle.toLowerCase().includes(q)
         )
       }));
-      
+
       return [{
-        category: { id: 'search', title: '搜索结果', smallTitle: `找到 ${result.length} 个结果`, iconName: 'Blocks' },
+        category: {id: 'search', title: '搜索结果', smallTitle: `找到 ${result.length} 个结果`, iconName: 'Blocks'},
         items: result
       }];
     } else {
@@ -40,7 +40,7 @@ function NavigationPage() {
   }, [search, searchResults]);
 
   return (
-    <div 
+    <div
       className="min-h-screen pt-30 px-6 py-12 relative overflow-hidden"
       style={{
         backgroundColor: 'var(--bg-primary)',
@@ -48,16 +48,16 @@ function NavigationPage() {
       }}
     >
       <div className="absolute inset-0 opacity-30">
-        <div 
+        <div
           className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: 'radial-gradient(circle, var(--accent-color-opacity-10), transparent)' }}
+          style={{background: 'radial-gradient(circle, var(--accent-color-opacity-10), transparent)'}}
         />
-        <div 
+        <div
           className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
-          style={{ background: 'radial-gradient(circle, var(--accent-color-opacity-10), transparent)' }}
+          style={{background: 'radial-gradient(circle, var(--accent-color-opacity-10), transparent)'}}
         />
       </div>
-      
+
       <div className="relative z-10">
         <div className="max-w-8xl mx-auto space-y-16">
           {categoryGroups.map((group, index) => (
