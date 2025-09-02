@@ -37,9 +37,10 @@ function Layout() {
         </div>
 
         {/* 右上角：ThemeToggle */}
-        <div className="hidden sm:flex absolute top-6 right-6 pointer-events-auto">
+        <div className={`${isHomePage ? 'hidden' : ''} sm:flex absolute top-6 right-6 pointer-events-auto`}>
           <ThemeToggle/>
         </div>
+
 
         {/* 顶部居中：SearchBar (仅首页显示) */}
         {isHomePage && (
